@@ -1,0 +1,29 @@
+volumes:
+  meal_planner_dev_db:
+    external: true
+services:
+  api:
+    build:
+      context: api
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./api:/app"
+    environment:
+      PGHOST: db
+      PGDATABASE: meals
+      PGUSER: meals
+      PGPASSWORD: meals
+  db:
+    build:
+      context: db
+      dockerfile: Dockerfile.dev
+    volumes:
+      - meal_planner_dev_db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: meals
+      POSTGRES_USER: meals
+      POSTGRES_DB: meals
+    ports:
+      - "15432:5432"
