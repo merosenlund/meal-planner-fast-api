@@ -9,5 +9,5 @@ router = APIRouter(
 fake_items_db = {"this": "is fake"}
 
 @router.get("/")
-async def read_items():
+async def get_recipes():
     return fake_items_db
