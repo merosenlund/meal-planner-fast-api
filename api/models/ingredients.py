@@ -1,12 +1,19 @@
+from enum import Enum
 from typing import Union
 
 from pydantic import BaseModel
 
 
+class IngredientType(str, Enum):
+    standard = "STANDARD"
+    fruit = "FRUIT"
+    veggie = "VEGGIE"
+
+
 class IngredientIn(BaseModel):
     name: str
     unit_of_measure: str
-    type: str = "STANDARD"
+    type: IngredientType = "STANDARD"
 
 
 class IngredientOut(BaseModel):
@@ -19,4 +26,4 @@ class IngredientOut(BaseModel):
 class IngredientUpdate(BaseModel):
     ingredient_name: Union[str, None]
     unit_of_measure: Union[str, None]
-    ingredient_type: Union[str, None]
+    ingredient_type: Union[IngredientType, None]

@@ -10,6 +10,7 @@ from db_interface.ingredients import (
     update_ingredient
 )
 
+
 router = APIRouter(
     prefix='/ingredients',
     tags=["Ingredients"],
