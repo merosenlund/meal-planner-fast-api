@@ -10,11 +10,13 @@ class IngredientIn(BaseModel):
 
 
 class IngredientOut(BaseModel):
-    id: int
-    name: str
-    unit_of_measure: float
-    type: str
+    ingredient_id: int
+    ingredient_name: str
+    unit_of_measure: str
+    ingredient_type: str
 
 
-class IngredientList(BaseModel):
-    ingredients: list[IngredientOut]
+class IngredientUpdate(BaseModel):
+    ingredient_name: Union[str, None]
+    unit_of_measure: Union[str, None]
+    ingredient_type: Union[str, None]
