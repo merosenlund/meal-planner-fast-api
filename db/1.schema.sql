@@ -11,8 +11,7 @@ DROP TABLE IF EXISTS ingredient;
 CREATE TABLE ingredient (
   ingredient_id SERIAL PRIMARY KEY,
   ingredient_name varchar(50),
-  unit_of_measure smallint,
-  CONSTRAINT positive_unit_of_measure CHECK (unit_of_measure >= 0),
+  unit_of_measure varchar(10),
   ingredient_type ingredient_types DEFAULT 'STANDARD'
 );
 

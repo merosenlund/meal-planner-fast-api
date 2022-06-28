@@ -4,8 +4,8 @@ from pydantic import BaseModel
 
 
 class IngredientIn(BaseModel):
-    name: int
-    unit_of_measure: float
+    name: str
+    unit_of_measure: str
     type: str = "STANDARD"
 
 
