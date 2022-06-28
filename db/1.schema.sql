@@ -17,8 +17,8 @@ CREATE TABLE ingredient (
 
 DROP TABLE IF EXISTS recipe_ingredient;
 CREATE TABLE recipe_ingredient (
-  recipe_id integer REFERENCES recipe,
-  ingredient_id integer REFERENCES ingredient,
+  recipe_id integer REFERENCES recipe ON DELETE CASCADE,
+  ingredient_id integer REFERENCES ingredient ON DELETE CASCADE,
   serving_size real,
   CONSTRAINT positive_serving_size CHECK (serving_size >= 0),
   PRIMARY KEY (recipe_id, ingredient_id)
@@ -35,20 +35,20 @@ CREATE TABLE meal (
   meal_id SERIAL PRIMARY KEY,
   meal_ingredient integer,
   meal_date timestamp,
-  recipe_id integer REFERENCES recipe,
+  recipe_id integer REFERENCES recipe ON DELETE RESTRICT,
   planned smallint,
   actual smallint,
-  meal_order_id integer REFERENCES meal_order,
-  fruit_id integer REFERENCES ingredient,
+  meal_order_id integer REFERENCES meal_order ON DELETE RESTRICT,
+  fruit_id integer REFERENCES ingredient ON DELETE RESTRICT,
   fruit_serving_size real,
-  veggie_id integer REFERENCES ingredient,
+  veggie_id integer REFERENCES ingredient ON DELETE RESTRICT,
   veggie_serving_size real
 );
 
 DROP TABLE IF EXISTS meal_ingredient;
 CREATE TABLE meal_ingredient (
-  meal_id integer REFERENCES meal,
-  ingredient_id integer REFERENCES ingredient,
+  meal_id integer REFERENCES meal ON DELETE CASCADE,
+  ingredient_id integer REFERENCES ingredient ON DELETE CASCADE,
   needed smallint,
   put_out smallint,
   left_over smallint,
