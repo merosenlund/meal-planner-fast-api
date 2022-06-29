@@ -6,8 +6,7 @@ router = APIRouter(
     responses={404: {"description": "Not found"}},
 )
 
-fake_items_db = {"this": "is fake"}
 
 @router.get("/")
-async def get_recipes():
-    return fake_items_db
+async def api_get_recipes():
+    return "in progress"

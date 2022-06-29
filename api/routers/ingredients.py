@@ -27,8 +27,8 @@ def api_get_ingredient(ingredient_id: int):
 
 
 @router.get("/", response_model=list[IngredientOut])
-def api_get_ingredients():
-    ingredients = get_all_ingredients()
+def api_get_ingredients(page: int = 1, count: int = 10, ):
+    ingredients = get_all_ingredients(page=page, count=count)
     return ingredients
 
 

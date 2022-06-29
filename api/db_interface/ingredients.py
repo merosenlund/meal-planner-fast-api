@@ -16,13 +16,15 @@ def get_ingredient(ingredient_id):
     return ingredient
 
 
-def get_all_ingredients():
+def get_all_ingredients(page, count):
     with psycopg.connect(row_factory=dict_row) as conn:
         with conn.cursor() as cur:
             cur.execute(
                 """
                 SELECT * FROM ingredient
-                """,
+                OFFSET %s
+                LIMIT %s
+                """, [((page - 1) * count), count]
             )
             ingredients = cur.fetchall()
     return ingredients
