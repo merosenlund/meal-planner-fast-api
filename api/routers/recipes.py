@@ -1,3 +1,4 @@
+import os
 from fastapi import APIRouter
 
 router = APIRouter(
@@ -9,4 +10,4 @@ router = APIRouter(
 
 @router.get("/")
 async def api_get_recipes():
-    return "in progress"
+    return os.getenv("PGHOST")
